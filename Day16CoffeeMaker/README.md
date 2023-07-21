@@ -6,9 +6,13 @@ The program simulates a coffee machine that allows users to choose from differen
 ## Features
 
 The coffee machine offers three coffee options:
+
 Espresso
+
 Latte
+
 Cappuccino
+
 Each coffee option has specific ingredients and a cost associated with it.
 Users can check the available resources by typing "report".
 Users can turn off the coffee machine by typing "off".
@@ -16,11 +20,17 @@ Users can turn off the coffee machine by typing "off".
 ## How to Use
 
 Run the Python script, and the coffee machine will start.
+
 Type the name of the coffee you want (e.g., "espresso", "latte", or "cappuccino").
+
 Follow the instructions to insert coins when prompted, specifying the number of quarters, dimes, nickels, and pennies you are paying with.
+
 If the coffee machine has enough resources and the payment is successful, it will display the change (if any) and serve the coffee.
+
 If the machine doesn't have enough resources or the payment is insufficient, it will inform you accordingly.
+
 You can check the available resources and the profit by typing "report".
+
 To turn off the coffee machine, type "off".
 
 ## Resources
@@ -28,9 +38,12 @@ To turn off the coffee machine, type "off".
 The coffee machine has the following initial resources:
 
 Water: 300ml
+
 Milk: 200ml
+
 Coffee: 100g
-Profit
+
+## Profit
 
 The initial profit is set to $0. The program will update the profit whenever a successful transaction is made for a coffee.
 
