@@ -49,6 +49,6 @@ The initial profit is set to $0. The program will update the profit whenever a s
 
 ## Note
 
-This is a simplified version of a coffee machine, and it doesn't have a storage mechanism for money or permanent data storage. When you turn off the machine, the resources and profit will reset to their initial values.
+This is a simplified version of a coffee machine, and it doesn't have a storage mechanism for money or permanent data storage. When you turn off the machine, the resources and profit will reset to their initial values. I created another version using OOP in the `oop-coffee-machine-start` folder.
 
 Feel free to modify and improve this code as you progress in your 100 Days of Python Code journey! Happy coding!
