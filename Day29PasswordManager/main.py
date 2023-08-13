@@ -1,17 +1,41 @@
 from tkinter import *
 from tkinter import messagebox
-import os.path
+import json
 from random import choice, randint, shuffle
 import pyperclip
 
 window = Tk()
 window.title("Password Generator")
 window.config(padx=40, pady=40)
+# ------------------------------ PASSWORD SEARCH --------------------------------- #
+
+
+def search():
+    website = website_entry.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showwarning(title="Error", message="No data file found!")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=f"{website} Info",
+                                message=f"Email: {email}\n"
+                                        f"Password: {password}")
+        else:
+            messagebox.showwarning(title="Error", message=f"No details for {website} exists!")
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
 def generate_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+               'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+               'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+               'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
     password_letters = [choice(letters) for _ in range(randint(8, 10))]
@@ -28,23 +52,31 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_password():
-    path = './saved_password.txt'
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+        }
+    }
 
     if len(website) > 0 and len(password) > 0:
-        is_okay = messagebox.askokcancel(title=website, message=f"You have entered the following details: \n"
-                                                                f"Email: {email} \nPassword: {password} "
-                                                                f"\nIs it okay to save? ")
-        if is_okay:
-            if os.path.isfile(path):
-                method = "a"
-            else:
-                method = "w"
-            with open(path, method) as password_file:
-                password_file.write(f"{website} | {email} | {password}\n")
-
+        try:
+            with open("data.json", "r") as password_file:
+                # Read old data
+                data = json.load(password_file)
+        except FileNotFoundError:
+            with open("data.json", "w") as password_file:
+                # Saving update data
+                json.dump(new_data, password_file, indent=4)
+        else:
+            # Update old data with new data
+            data.update(new_data)
+            with open("data.json", "w") as password_file:
+                json.dump(data, password_file, indent=4)
+        finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
     else:
@@ -69,8 +101,8 @@ password_label.grid(column=0, row=3)
 
 
 # Entries
-website_entry = Entry(width=39)
-website_entry.grid(column=1, row=1, columnspan=2)
+website_entry = Entry()
+website_entry.grid(column=1, row=1)
 website_entry.focus()
 
 email_entry = Entry(width=39)
@@ -87,6 +119,9 @@ generate_password_btn.grid(column=2, row=3)
 
 add_button = Button(text="Add", width=37, command=save_password)
 add_button.grid(column=1, row=4, columnspan=2)
+
+search_btn = Button(text="Search", width=13, command=search)
+search_btn.grid(column=2, row=1)
 
 
 window.mainloop()
