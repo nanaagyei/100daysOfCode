@@ -4,9 +4,13 @@ import random
 
 BACKGROUND_COLOR = "#B1DDC6"
 # --------------------- DATA READING AND PROCESSING ---------------------- #
-data = pd.read_csv("data/french_words.csv")
+try:
+    data = pd.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    data = pd.read_csv("data/french_words.csv")
 data_dict_list = data.to_dict(orient="records")
 current_word = {}
+
 # --------------------- PICKING WORDS ---------------------- #
 
 
@@ -21,6 +25,13 @@ def next_card():
     flip_timer = window.after(3000, func=flip_card)
 
 
+def learned_card():
+    data_dict_list.remove(current_word)
+    next_card()
+    to_learn_df = pd.DataFrame(data_dict_list)
+    to_learn_df.to_csv("data/words_to_learn.csv", index=False)
+
+
 def flip_card():
     english_word = current_word["English"]
     canvas.itemconfig(card_title, text="English", fill="white")
@@ -30,7 +41,7 @@ def flip_card():
 
 # --------------------- UI SETUP ---------------------- #
 window = Tk()
-window.title("Flashy")
+window.title("Flash Card App")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 flip_timer = window.after(3000, func=flip_card)
@@ -48,11 +59,10 @@ wrong_button = Button(image=wrong_btn, highlightthickness=0, highlightbackground
 wrong_button.grid(column=0, row=1)
 
 correct_btn = PhotoImage(file="./images/right.png")
-correct_button = Button(image=correct_btn, highlightthickness=0, highlightbackground="white", command=next_card)
+correct_button = Button(image=correct_btn, highlightthickness=0, highlightbackground="white", command=learned_card)
 correct_button.grid(column=1, row=1)
 
 next_card()
-
 
 
 window.mainloop()
