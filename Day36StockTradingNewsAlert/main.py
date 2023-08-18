@@ -1,4 +1,4 @@
-import requests
+import requests, os
 from twilio.rest import Client
 
 STOCK_NAME = "TSLA"
@@ -29,8 +29,8 @@ def get_news():
 
     headlines_descriptions = [[article["title"], article["description"], article["url"]] for article in articles]
 
-    account_sid = "ACf1e6d54e563a0541b841bf3ae121d7d4"
-    auth_token = "c1a86dbbbf568c12e36796ab9fc40705"
+    account_sid = os.environ['ACCOUNT_SID']
+    auth_token = os.environ['AUTN_TOKEN']
 
     for article in headlines_descriptions:
         headline = article[0]
@@ -73,7 +73,7 @@ day_before_yesterday = closing_prices[1]
 price_diff = abs(yesterday_closing_price - day_before_yesterday)
 
 
-percent_diff = (price_diff/day_before_yesterday) * 100
+percent_diff = round((price_diff/day_before_yesterday) * 100)
 
 ticker = ""
 if yesterday_closing_price - day_before_yesterday < 0:
