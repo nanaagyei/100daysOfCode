@@ -14,5 +14,4 @@ while quiz.still_has_questions():
 print("Congrats! You have completed the quiz")
 print(f"Your final score was: {quiz.score}/{quiz.question_number}")
 
-# TODO: Make it work with Open Trivia Database (https://opentdb.com/api_config.php)
 
