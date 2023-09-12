@@ -1,10 +1,8 @@
-<!DOCTYPE HTML>
+{% extends "base.html" %}
 
-<html xmlns="http://www.w3.org/1999/html">
-	<head>
-		<title>Login</title>
-	</head>
-	<body>
+{% block title %}Login {% endblock %}
+
+{% block content %}
         <div class="container">
 		<h1>Login</h1>
         <!-- This is where our form will go. -->
@@ -25,5 +23,4 @@
 				{{ form.submit }}
 			</form>
         </div>
-	</body>
-</html>
+{% endblock %}

@@ -1,11 +1,13 @@
 import os
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from flask_bootstrap import Bootstrap5
+from wtforms import PasswordField, SubmitField, EmailField
 from wtforms.validators import DataRequired, Length, Email
 
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
+bootstrap = Bootstrap5(app)
 
 
 class MyForm(FlaskForm):
