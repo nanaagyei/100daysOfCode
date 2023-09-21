@@ -13,7 +13,7 @@ window.config(padx=40, pady=40)
 def search():
     website = website_entry.get()
     try:
-        with open("data.json", "r") as data_file:
+        with open("/Users/nanaagyei/Documents/data.json", "r") as data_file:
             data = json.load(data_file)
     except FileNotFoundError:
         messagebox.showwarning(title="Error", message="No data file found!")
@@ -64,17 +64,17 @@ def save_password():
 
     if len(website) > 0 and len(password) > 0:
         try:
-            with open("data.json", "r") as password_file:
+            with open("/Users/nanaagyei/Documents/data.json", "r") as password_file:
                 # Read old data
                 data = json.load(password_file)
         except FileNotFoundError:
-            with open("data.json", "w") as password_file:
+            with open("/Users/nanaagyei/Documents/data.json", "w") as password_file:
                 # Saving update data
                 json.dump(new_data, password_file, indent=4)
         else:
             # Update old data with new data
             data.update(new_data)
-            with open("data.json", "w") as password_file:
+            with open("/Users/nanaagyei/Documents/data.json", "w") as password_file:
                 json.dump(data, password_file, indent=4)
         finally:
             website_entry.delete(0, END)
