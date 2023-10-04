@@ -1,0 +1,13 @@
+.idea
+
+
+# Virtual environment
+venv
+venv/
+env
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+.vscode
