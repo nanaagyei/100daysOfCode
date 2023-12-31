@@ -34,7 +34,7 @@ headers = {
 }
 # response = requests.post(url=GRAPH_ENDPOINT, json=graph_config, headers=headers)
 # print(response.text)
-today = datetime(year=2023, month=8, day=3)
+today = datetime(year=2023, month=12, day=30)
 
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 pixel_config = {

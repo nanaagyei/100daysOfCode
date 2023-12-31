@@ -1,9 +1,10 @@
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
+import os
 
 MY_EMAIL = "prince.agyei.tuffour@gmail.com"
-MY_PASSWORD = "oewnrozghnvdgtyj"
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 RECIPIENT_ADDRESS = "nanakwameagyeituffour@gmail.com"
 
 

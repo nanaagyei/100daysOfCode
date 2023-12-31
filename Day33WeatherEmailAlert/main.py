@@ -1,11 +1,12 @@
 import requests, smtplib, time
 from datetime import datetime
+import os
 
 MY_LAT = 51.507351  # Your latitude
 MY_LONG = -0.127758  # Your longitude
 
 MY_EMAIL = "prince.agyei.tuffour@gmail.com"
-MY_PASSWORD = "enyjxmgfytityizn"
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 
 def is_iss_close():

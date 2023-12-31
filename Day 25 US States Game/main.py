@@ -12,7 +12,7 @@ def goto_location(state_name):
 
 
 screen = turtle.Screen()
-screen.title("US States Game")
+screen.title("Day 25 US States Game")
 img = "blank_states_img.gif"
 screen.addshape(img)
 turtle.shape(img)

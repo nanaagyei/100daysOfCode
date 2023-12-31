@@ -1,29 +1,28 @@
-## 100 Movies that You Must Watch
+# Movie Titles Web Scraper
 
-# Objective
+## Overview
+The Movie Titles Web Scraper is a Python application designed to extract and list movie titles from a specific webpage. Utilizing web scraping techniques with `requests` and `BeautifulSoup`, the script fetches a web page, parses the HTML to find movie titles, and saves them in a text file.
 
-Scrape the top 100 movies of all time from a website. Generate a text file called `movies.txt` that lists the movie titles in ascending order (starting from 1). 
-The result should look something like this:
+## Files in the Project
+- `main.py`: The primary script for web scraping, parsing, and writing movie titles to a file.
 
-```
-1) The Godfather
-2) The Empire Strikes Back
-3) The Dark Knight
-4) The Shawshank Redemption
-... and so on
-```
-The central idea behind this project is to be able to use BeautifulSoup to obtain some data - like movie titles - from a website like Empire's (or from, say Timeout or Stacker that have curated similar lists). 
+## How to Set Up
+1. Ensure Python is installed on your system, along with the `requests` and `bs4` (BeautifulSoup) modules.
+2. Download the `main.py` file.
+3. Modify the `URL` variable in `main.py` if you wish to scrape a different webpage.
+4. Run `main.py`.
 
-### ⚠️ Important: Use the Internet Archive's URL
+## Using the Application
+- The script accesses the specified URL and fetches its HTML content.
+- It parses the HTML to extract movie titles using BeautifulSoup.
+- Extracted titles are saved in a file named `movies.txt`.
+- You can customize the script to target different elements or webpages as needed.
 
-Since websites change very frequently, **use this link** 
-```
-URL = "https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/"
-```
-from the Internet Archive's Wayback machine. That way your work will match the solution video.
+## Dependencies
+- Python 3.x
+- `requests` module for fetching web content
+- `bs4` (BeautifulSoup) module for HTML parsing
 
-(Do *not* use https://www.empireonline.com/movies/features/best-movies-2/ which I've used in the screen recording)
+## Credits
+This web scraper is an example of how to automate the process of extracting information from web pages.
 
-# Solution
-
-You can find the code from my walkthrough and solution as a downloadable .zip file in the course resources for this lesson. 

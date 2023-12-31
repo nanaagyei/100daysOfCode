@@ -1,7 +1,8 @@
 import requests
+import os
 
 FLIGHT_DEAL_SHEET_ENDPOINT = "https://api.sheety.co/5e896975398d618be7847043dec004ed/flightDeals/prices"
-TOKEN = "DJSUTE3582KKDMAEURLAO"
+TOKEN = os.environ.get("TOKEN")
 headers = {
     "Authorization": f"Bearer {TOKEN}"
 }

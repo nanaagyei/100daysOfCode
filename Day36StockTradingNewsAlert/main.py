@@ -1,4 +1,5 @@
-import requests, os
+import os
+import requests
 from twilio.rest import Client
 
 STOCK_NAME = "TSLA"
@@ -7,8 +8,8 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
-NEWS_API_KEY = "d6ece9ed1c7746cbbf53674de66c5479"
-STOCK_API_KEY = "E3Q54Z9NH7ARYFIU"
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
+STOCK_API_KEY = os.environ.get("STOCK_API_KEY")
 
 
 def get_news():
@@ -61,8 +62,6 @@ stock_response.raise_for_status()
 stock_data = stock_response.json()
 time_series_stock = stock_data["Time Series (Daily)"]
 
-# STEP 1: Use https://www.alphavantage.co/documentation/#daily
-# When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
 closing_prices = [float(prices["4. close"]) for (date,prices) in time_series_stock.items()]
 yesterday_closing_price = closing_prices[0]
@@ -85,8 +84,6 @@ if percent_diff > 1:
     print(get_news())
 else:
     print("No major change")
-    # STEP 2: https://newsapi.org/
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 
 # Optional TODO: Format the message like this:
