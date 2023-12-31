@@ -2,6 +2,7 @@ import turtle
 
 sketch = turtle.Turtle()
 screen = turtle.Screen()
+screen.title("Etch a Sketch")
 
 
 def move_forward():

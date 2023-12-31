@@ -1,6 +1,8 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
+from pydub import AudioSegment
+from pydub.playback import play
 from scoreboard import Scoreboard
 import time
 
@@ -13,6 +15,9 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+
+bite_sound = AudioSegment.from_mp3("Cartoon Bite Sound Effect.mp3")
+game_over_sound = AudioSegment.from_mp3("Fail Sound Effect.mp3")
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -28,6 +33,7 @@ while game_is_on:
 
     # Detect collision with food.
     if snake.head.distance(food) < 15:
+        play(bite_sound)
         food.refresh()
         snake.extend()
         scoreboard.increase_score()
@@ -37,6 +43,7 @@ while game_is_on:
         scoreboard.reset()
         snake.reset()
         game_is_on = False
+        play(game_over_sound)
         scoreboard.game_over()
 
     # Detect collision with tail.
@@ -45,6 +52,7 @@ while game_is_on:
             scoreboard.reset()
             snake.reset()
             game_is_on = False
+            play(game_over_sound)
             scoreboard.game_over()
 
 screen.exitonclick()

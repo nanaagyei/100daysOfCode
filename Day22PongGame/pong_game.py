@@ -48,5 +48,3 @@ while game_is_on:
         scoreboard.r_point()
 
 screen.exitonclick()
-
-# TODO: Write code to keep paddles on screen or make sure they do not pass the edge of the screen

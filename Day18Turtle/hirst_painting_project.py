@@ -11,6 +11,7 @@ hirst.penup()
 hirst.forward(300)
 hirst.setheading(0)
 
+
 def create_dot_line():
     for _ in range(10):
         hirst.dot(20, random.choice(color_list))
@@ -31,4 +32,5 @@ for _ in range(10):
     starting_point()
 
 screen = turtle.Screen()
+screen.title("Hirst Painting Project")
 screen.exitonclick()
