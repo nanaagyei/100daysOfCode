@@ -50,7 +50,7 @@ for y in range(brick_rows):
 
 # Score
 score = 0
-lives = 3
+lives = 4
 
 # Score display
 score_display = turtle.Turtle()
